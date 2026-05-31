@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Auth from './pages/auth';
 import Checkout from './pages/Checkout';
 import Navbar from './components/Navbar';
-import './App.css';
+
 
 
 function App() {
