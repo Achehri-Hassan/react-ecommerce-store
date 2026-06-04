@@ -1,10 +1,13 @@
 
 
 import { useState } from "react";
+// import {useForm} from "react-hook-form";
+import "../assets/css/Auth.css";
 
 export default function Auth(){
     
     const [mode , setModel] = useState("signup");
+    
     return(
          
         <div className="page">
@@ -32,13 +35,13 @@ export default function Auth(){
                  { mode === "signup" ?
 
                     <p>Already have an  account?  {" "}
-                    <span className="auth-link">Login</span>
+                    <span className="auth-link" onClick={() => setModel("login")}>Login</span>
                     </p>
 
                  : (
                      <p> {" "}
                     Don't  have an  account?  {" "}
-                    <span className="auth-link">Sign up</span>
+                    <span className="auth-link" onClick={() => setModel("signup")}>Sign up</span>
                     </p>
                  )}
 
