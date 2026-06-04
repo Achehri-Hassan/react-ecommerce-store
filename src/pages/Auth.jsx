@@ -12,6 +12,7 @@ export default function Auth(){
             <div className="auth-container">
               <h1 className="page-title">{mode === "signup" ? "Sign Up" : "login" }</h1>
               <form action="" className="auth-form">
+
                 <div className="form-group">
                      <label className="form-label" htmlFor="email">Email</label>
                      <input type="email"  className="form-input" id="email"/>
@@ -29,10 +30,19 @@ export default function Auth(){
                <div className="auth-switch">
 
                  { mode === "signup" ?
-                    <p>Already have an  account?  {" "}<span className="auth-link">Login</span></p>
 
-                   : <p>
-                    {" "}Don't  have an  account?  {" "}<span className="auth-link">Sign up</span></p> }
+                    <p>Already have an  account?  {" "}
+                    <span className="auth-link">Login</span>
+                    </p>
+
+                 : (
+                     <p> {" "}
+                    Don't  have an  account?  {" "}
+                    <span className="auth-link">Sign up</span>
+                    </p>
+                 )}
+
+                    {/* {" "}Don't  have an  account?  {" "}<span className="auth-link">Sign up</span></p> } */}
 
                </div>
             </div>
