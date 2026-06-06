@@ -1,16 +1,40 @@
 
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 // import "../assets/css/Form.css";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Auth(){
     
     const [mode , setModel] = useState("signup");
+    const [error , setError] = useState(null);
+    
+    const navigate = useNavigate();
+
+    const {signUp , user , logout , login} = useContext(AuthContext);
+
     const {register , handleSubmit ,formState:{errors},} = useForm();
 
-    function onSubmit(){
-        alert("Signed Up");
+    function onSubmit(data){
+        
+        setError(null);
+
+        let result;
+        if(mode == "signUp "){
+            result = signUp(data.email , data.password);
+        }else{
+            result = login(data.email , data.password);
+        }
+
+        if(result.success){
+             navigate("/");
+        }else{
+             setError(result.error)
+        }
+      
     }
     
     return(
@@ -18,8 +42,12 @@ export default function Auth(){
         <div className="page">
            <div className="container">
             <div className="auth-container">
+                {user && <p>User logged in: {user.email}</p>}
+                <button onClick={()=>logout() }>logout</button>
               <h1 className="page-title">{mode === "signup" ? "Sign Up" : "login" }</h1>
               <form action="" className="auth-form" onSubmit={handleSubmit(onSubmit)}>
+                
+                 {error && <div className="error-message">{error}</div>}
 
                 <div className="form-group">
                      <label className="form-label" htmlFor="email">Email</label>
@@ -36,7 +64,7 @@ export default function Auth(){
                  <div className="form-group">
                      <label className="form-label" htmlFor="password">Password</label>
                      <input type="password"  className="form-input"  id="password" 
-                     {...register('Password',{required:"Password is required" ,
+                     {...register('password',{required:"password is required" ,
                         minLength:{
                             value:12,
                             message:"Please must be at least 6 character",
