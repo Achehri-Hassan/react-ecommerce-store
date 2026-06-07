@@ -45,8 +45,8 @@ export default function AuthProvider({children}){
         setUser(null);
     }
 
-    return <AuthContext.provider value= {{signUp , user , logout , login}}>
+    return <AuthContext.Provider value= {{signUp , user , logout , login}}>
       {children}
-    </AuthContext.provider>
+    </AuthContext.Provider>
 
 }
