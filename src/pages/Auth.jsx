@@ -23,7 +23,7 @@ export default function Auth(){
         setError(null);
 
         let result;
-        if(mode == "signUp "){
+        if(mode == "signup "){
             result = signUp(data.email , data.password);
         }else{
             result = login(data.email , data.password);
@@ -66,7 +66,7 @@ export default function Auth(){
                      <input type="password"  className="form-input"  id="password" 
                      {...register('password',{required:"password is required" ,
                         minLength:{
-                            value:12,
+                            value:6,
                             message:"Please must be at least 6 character",
                         },
                         maxLength:{
