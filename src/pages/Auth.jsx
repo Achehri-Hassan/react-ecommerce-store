@@ -23,7 +23,7 @@ export default function Auth(){
         setError(null);
 
         let result;
-        if(mode == "signup "){
+        if(mode == "signup"){
             result = signUp(data.email , data.password);
         }else{
             result = login(data.email , data.password);

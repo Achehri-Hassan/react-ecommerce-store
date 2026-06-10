@@ -26,17 +26,19 @@ export default function AuthProvider({children}){
 
     }
 
-    function login(email , password){
+    function login(email, password) {
 
-        const users = JSON.parse(localStorage.getItem("users") || "[]" );
-        const user = users.find((u) => u.email === email && u.password === password);
-        
-        if(!user){
-            return{success:false , error:"invalid email or password"}
-        }
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const user = users.find((u) => u.email === email && u.password === password);
+    
+    if (!user) {
+        return { success: false, error: "invalid email or password" };
+    }
 
-    return {success:true}
+    localStorage.setItem("currentUserEmail", email);  
+    setUser({ email });                               
 
+    return { success: true };
     }
 
     function logout(){
