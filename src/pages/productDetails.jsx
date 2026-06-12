@@ -23,19 +23,24 @@ export default function ProductDetails(){
 
     } , [id]);
 
-    return <div className="page">
+    if(!product){
+         return <h1>Loading....</h1>
+    }
+
+    return (<div className="page">
          <div className="container">
              <div className="product-detail">
                  <div className="product-detail-image">
                      <img src={product.image} alt={product.name} />
                  </div>
                  <div className="product-detail-content"> 
-                     <h1>{product.name}</h1>
-                     <p>${product.price}</p>
-                     <p>{product.description}</p>
+                     <h1 className="product-detail-name">{product.name}</h1>
+                     <p className="product-detail-price">${product.price}</p>
+                     <p className="product-detail-description">{product.description}</p>
                      <button className="btn btn-primary ">Add to card</button>
                  </div>
              </div>
          </div>
     </div>
+    );
 }
