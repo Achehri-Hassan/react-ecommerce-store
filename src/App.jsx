@@ -7,6 +7,7 @@ import Checkout from './pages/Checkout';
 import Navbar from './components/Navbar';
 import AuthProvider from "./context/AuthContext";
 import ProductDetails from "./pages/productDetails";
+import CardProvider from "./context/CartContext";
 
 
 
@@ -15,6 +16,7 @@ function App() {
      return(
 
        <AuthProvider>
+        <CardProvider>
        <div className='app'>
           <Navbar/>
           <Routes>
@@ -24,6 +26,7 @@ function App() {
               <Route path="/products/:id" element={<ProductDetails/>}/>
           </Routes>
        </div>
+       </CardProvider>
        </AuthProvider>
      );
 }
