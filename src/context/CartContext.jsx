@@ -30,9 +30,40 @@ export default function CardProvider({children}){
         ...item,
        product: getProductById(item.id)
        })).filter(item => item.product);
+    };
+
+
+   function removeFromCart(productId){
+      setCartItem(cartItems.filter((item) => item.id !== productId));
+   }
+    
+    function UpdateQuantity(productId , quantity){
+      
+      if(quantity <= 0){
+         removeFromCart(productId);
+         return;
+      }
+      setCartItem(
+          cartItems.map((item) => item.id ===  productId ? {...item, quantity} : item)
+        );
     }
 
-    return <CartContext.Provider value= {{cartItems , addToCart , getCartItemsProducts}}>
+    function getCartTotal(){
+        const total = cartItems.reduce((total , item) =>{
+            const product = getProductById(item.id);
+            return total + (product ?product.price * item.quantity : 0); 
+        } , 0);
+
+        return total;
+    }
+
+    function clearCart (){
+       setCartItem([]);
+    }
+
+
+
+    return <CartContext.Provider value= {{cartItems , addToCart , getCartItemsProducts , removeFromCart , UpdateQuantity , getCartTotal , clearCart}}>
       {children}
     </CartContext.Provider>
 
