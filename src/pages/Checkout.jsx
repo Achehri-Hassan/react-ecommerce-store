@@ -2,12 +2,14 @@
 
 
 import { UseCart } from "../context/CartContext";
-
+import "../assets/css/Checkout.css";
 
 export default function Checkout(){
     
-    const [getCartItemsWithProducts , UpdateQuantity , removeFromCart , getCartTotal , clearCart]= UseCart();
-    const cartItems = getCartItemsWithProducts();
+    // const [getCartItemsProducts , UpdateQuantity , removeFromCart , getCartTotal , clearCart]= UseCart()
+    // ;
+    const { getCartItemsProducts, UpdateQuantity, removeFromCart, getCartTotal, clearCart } = UseCart();
+    const cartItems = getCartItemsProducts();
 
     const total = getCartTotal();
 
@@ -21,7 +23,7 @@ export default function Checkout(){
              <div className="checkout-container">
                  <div className="checkout-items">
                       <h2 className="checkout-section-title">Order Summary</h2>
-                      {cartItems.map((item) => {
+                      {cartItems.map((item) => (
                          <div className="checkout-item" key={item.id}>
                              <img src={item.product.image} alt={item.product.name}  className="checkout-item-image"/>
 
@@ -45,7 +47,7 @@ export default function Checkout(){
 
                              </div>
                          </div>
-                      })}
+                      ))}
                  </div>
                  <div className="checkout-summary">
                       <h2 className="checkout-section-total">Total</h2>
