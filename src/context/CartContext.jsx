@@ -3,6 +3,7 @@
 
 
 import { createContext, useState , useContext } from "react";
+import { getProductById } from "../data/products";
 
 const CartContext = createContext(null);
 
@@ -24,7 +25,14 @@ export default function CardProvider({children}){
         
     }
 
-    return <CartContext.Provider value= {{cartItems , addToCart}}>
+    function getCartItemsProducts(){
+       return cartItems.map(item =>({
+        ...item,
+       product: getProductById(item.id)
+       })).filter(item => item.product);
+    }
+
+    return <CartContext.Provider value= {{cartItems , addToCart , getCartItemsProducts}}>
       {children}
     </CartContext.Provider>
 
